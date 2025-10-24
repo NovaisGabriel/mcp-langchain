@@ -34,6 +34,11 @@ Run backend:
 - copy .env.example to .env and set OPENAI_API_KEY
 - python app.py
 
+Unit test for backend:
+- pytest -v
+
+![alt text](imgs/backend_test.png)
+
 Run frontend:
 - cd frontend
 - npm install
