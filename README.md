@@ -38,26 +38,7 @@ The backend uses **Flask**, **LangChain**, and **OpenAI GPT-3.5**, while the fro
 - **Backend:** Flask, SQLAlchemy, Flask-CORS  
 - **Database:** SQLite  
 - **LLM/AI:** LangChain v0.2+, OpenAI GPT-3.5  
-- **Testing:** Pytest, Flask test client, Monkeypatch  
-
----
-
-## Project Structure
-
-backend/
-│ ├─ app.py # Flask backend
-│ ├─ chains.py # LLM processing logic
-│ ├─ models.py # Database models (optional)
-│ ├─ tests/ # Test suite
-│ └─ requirements.txt
-frontend/
-│ ├─ src/
-│ │ ├─ App.jsx # Main React app
-│ │ └─ components/ # UI components
-│ └─ package.json
-
-yaml
-Copiar código
+- **Testing:** Pytest, Flask test client, Monkeypatch 
 
 ---
 
@@ -106,3 +87,13 @@ Prompts tips:
 3. Keywords: ask for exactly N keywords, or key phrases; if you want multi-word phrases, instruct the model: “prefer 1–3 word phrases”.
 4. Temperature: use low temperature (0 — 0.3) for deterministic outputs.
 5. Token limits: for very long texts, chunk before summarizing or use a chain-of-thought summarization pattern (chunk → intermediate summaries → final summary).
+
+Future Improvements
+
+Async background processing for large text inputs (Celery/RQ).
+
+Expert dashboard for reviewing or correcting results.
+
+Dockerized deployment for frontend and backend.
+
+Authentication & multi-user support.
