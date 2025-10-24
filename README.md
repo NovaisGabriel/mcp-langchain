@@ -1,6 +1,6 @@
 # Multi-Channel Processing App (MCP)
 
-![alt text](imgs/frontend.png)
+![alt text](imgs/frontend_ux.png)
 
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/flask-2.3.2-orange)](https://flask.palletsprojects.com/)
