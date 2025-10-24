@@ -1,26 +1,78 @@
-# MCP LangChain (separate frontend + backend)
+# Multi-Channel Processing App (MCP)
 
-(Windows)
+![alt text](imgs/frontend.png)
 
-Project Layout:
-mcp-langchain/
-├─ backend/
-│  ├─ app.py                 # Flask app + endpoints
-│  ├─ models.py              # SQLAlchemy models
-│  ├─ db.py                  # DB init helper
-│  ├─ requirements.txt
-│  └─ prompts.py             # Prompt templates & LangChain chains
-├─ frontend/
-│  ├─ package.json
-│  ├─ src/
-│  │  ├─ App.jsx
-│  │  ├─ components/
-│  │  │  ├─ ChatBox.jsx
-│  │  │  └─ ResultsList.jsx
-│  │  └─ api.js
-│  └─ tailwind.config.js (optional)
-└─ README.md
+[![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/flask-2.3.2-orange)](https://flask.palletsprojects.com/)
+[![React](https://img.shields.io/badge/react-18.2.0-blueviolet)](https://reactjs.org/)
+[![OpenAI](https://img.shields.io/badge/OpenAI-API-green)](https://openai.com/)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
+---
+
+## Project Overview
+
+**MCP (Multi-Channel Processing)** is a web application for automated text analysis. Users submit text through a simple interface, and the backend processes it to provide:
+
+1. **Summarization** – concise summaries of the text.  
+2. **Sentiment Analysis** – determines sentiment (Positive, Neutral, Negative).  
+3. **Keyword Extraction** – identifies key topics from the text.
+
+The backend uses **Flask**, **LangChain**, and **OpenAI GPT-3.5**, while the frontend is built in **React**. Results are stored in **SQLite** for persistence and tracking.
+
+---
+
+## Features
+
+- Intuitive React frontend for text submission and result display.  
+- Flask backend with REST API for processing text.  
+- Modular LLM pipeline using **LangChain**.  
+- Persistent storage in SQLite for messages and analysis results.  
+- Automated test suite with **pytest** and mocked LLM calls.  
+
+---
+
+## Tech Stack
+
+- **Frontend:** React (Vite), JavaScript, Axios  
+- **Backend:** Flask, SQLAlchemy, Flask-CORS  
+- **Database:** SQLite  
+- **LLM/AI:** LangChain v0.2+, OpenAI GPT-3.5  
+- **Testing:** Pytest, Flask test client, Monkeypatch  
+
+---
+
+## Project Structure
+
+backend/
+│ ├─ app.py # Flask backend
+│ ├─ chains.py # LLM processing logic
+│ ├─ models.py # Database models (optional)
+│ ├─ tests/ # Test suite
+│ └─ requirements.txt
+frontend/
+│ ├─ src/
+│ │ ├─ App.jsx # Main React app
+│ │ └─ components/ # UI components
+│ └─ package.json
+
+yaml
+Copiar código
+
+---
+
+## How it Works
+
+1. **User Input:** Enter text in the frontend.  
+2. **API Call:** Frontend sends a POST request to `/api/analyze`.  
+3. **Text Processing:** Backend uses `run_chain` to generate:
+   - Summary  
+   - Sentiment  
+   - Keywords  
+4. **Database Storage:** Results saved in SQLite.  
+5. **Display Results:** Returned JSON is displayed in the frontend.
+
+---
 
 Structure:
 - backend/: Flask API that stores messages and calls LangChain chains
@@ -38,6 +90,8 @@ Unit test for backend:
 - pytest -v
 
 ![alt text](imgs/backend_test.png)
+
+Obs: What this test does spins up an in-memory SQLite DB (so your real messages.db stays untouched). Mocks the LangChain LLM using monkeypatch to skip API calls and return fake results. Sends a POST request to /api/analyze with test text. Verifies that: Response is valid JSON with summary, sentiment, keywords and a message was inserted in the database.
 
 Run frontend:
 - cd frontend
