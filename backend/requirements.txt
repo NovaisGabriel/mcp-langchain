@@ -1,7 +1,10 @@
 flask
-flask-cors
-sqlalchemy
-pydantic
-langchain
-openai
+flask_sqlalchemy
+flask_cors
 python-dotenv
+langchain-core
+langchain-community
+langchain-openai
+openai
+pytest 
+pytest-flask
